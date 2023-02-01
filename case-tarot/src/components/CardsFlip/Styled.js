@@ -1,31 +1,4 @@
-import styled from "styled-components";
-import ImgTopo from '../../assets/topo.jpg'
-
-export const Inicial = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    `
-
-export const Cabecalho = styled.header`
-    background-image: url(${ImgTopo});
-    width: 1440px;
-    height: 150px;
-    background-position: center center;
-    padding: 25px 55px;
-    color: #ccc;
-`
-
-export const BlocoCards = styled.div`
-    width: 1300px;
-    padding: 0 40px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-`
-
-////////////////////////////////////////// flip ///////////////
+import styled from "styled-components"
 
 export const ContainerCard = styled.label`
     background-color: #56070c;

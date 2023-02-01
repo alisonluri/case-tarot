@@ -1,14 +1,15 @@
+import GlobalState from "./global/GlobalState";
 import { Router } from "./router/Router";
 import {GlobalStyle, Page} from './Styled.js';
 
 function App() {
   return (
-    <div>
+    <GlobalState>
       <GlobalStyle />
       <Page>
         <Router />
       </Page>
-    </div>
+    </GlobalState>
   );
 }
 
