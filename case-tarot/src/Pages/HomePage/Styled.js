@@ -25,47 +25,14 @@ export const BlocoCards = styled.div`
     justify-content: center;
 `
 
-////////////////////////////////////////// flip ///////////////
-
-export const ContainerCard = styled.label`
-    background-color: #56070c;
+export const BotaoIniciar = styled.button`
+    height: 50px;
+    width: 100px;
+    margin: 20px 10px;
+    background-color: #ffa229;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
     border-radius: 10px;
-    width: 162px;
-    height: 339px;
-    margin: 10px auto;
-    &:hover {
-        transform: rotateY(180deg);
-        transition: 1.8s;
-    }
-`
-
-export const FlipperCard = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 1.8s;
-    transform-style: preserve-3d;
-`
-
-export const FrontCard = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    img{
-        border-radius: 10px;
-        height: 100%;
-        width: 100%;
-    }
-    /* backface-visibility: hidden; */
-`
-
-export const BackCard = styled(FrontCard)`
-    transform: rotateY(180deg);
-    height: 100%;
-    width: 100%;
-    img{
-        border-radius: 10px;
-        height: 100%;
-        width: 100%;
-    }
+    border: #f9f9c9;
 `

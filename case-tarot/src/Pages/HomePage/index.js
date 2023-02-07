@@ -1,25 +1,37 @@
-import { Cabecalho, Inicial, BlocoCards, ContainerCard, FlipperCard, FrontCard, BackCard } from './Styled'
-// import CardsFlip from '../../components/CardsFlip/CardsFlip'
+import { Cabecalho, Inicial, BlocoCards, BotaoIniciar } from './Styled'
+import CardsFlip from '../../components/CardsFlip/CardsFlip'
 import useRequestData from '../../hooks/useRequestData'
-import React from 'react'
+import React, { useState } from 'react'
+import Descricao from '../../components/Descricao/Descricao'
+import Modal from 'react-modal'
+
+Modal.setAppElement('#root')
 
 const HomePage = () => {
+    const [modalOpen, setModalOpen] = useState(false)
 
     const cartas = useRequestData('/dataCards.json')
     const urlImgFront = cartas && `${cartas.imagesUrl}`
-    const urlImgBack = cartas && `${cartas.imageBackCard}`
 
     console.log(cartas)
+    
+        const handleOpenModal = () => {
+            setModalOpen(true)
+        }
+    
+        const handleCloseModal = () => {
+            setModalOpen(false)
+        }
 
-    // const jogoCartas = cartas && cartas.cards &&
-    //     cartas.cards.map((info, index) => {
-    //         return <CardsFlip
-    //             key={index}
-    //             frente={`${urlImgFront}${info.image}`}
-    //             verso={urlImgBack}
-    //             nome={info.name}
-    //         />
-    //     })
+    const jogoCartas = cartas && cartas.cards &&
+        cartas.cards.map((index) => {
+            return <CardsFlip
+                key={index.name}
+                frente={urlImgFront + index.image}
+                nome={index.name}
+                openModal={handleOpenModal}
+            />
+        })
 
     return (
         <Inicial>
@@ -27,33 +39,20 @@ const HomePage = () => {
                 <h1>Página Tarot</h1>
                 <p>Clique em iniciar e escolha uma carta.</p>
             </Cabecalho>
-            <button>Iniciar</button>
 
-            {/* {<img alt='teste' src={urlImgBack} />} */}
+            <BotaoIniciar>Iniciar</BotaoIniciar>
+
+            <Modal
+                isOpen={modalOpen}
+                onRequestClose={handleCloseModal}
+            >
+                <Descricao />
+            </Modal>
 
             <BlocoCards>
-
-                {/* {jogoCartas} */}
-                {/* /////////////////// */}
-
-                {cartas && cartas.cards &&
-                    cartas.cards.map((info, index) => {
-                        <ContainerCard key={index}>
-                            <FlipperCard>
-                                <FrontCard>
-                                    <img src={`${urlImgFront}${info.image}`} alt={`Carta: ${info.name}`}></img>
-                                </FrontCard>
-                                <BackCard>
-                                    <img src={urlImgBack} alt="Carta Verso"></img>
-                                </BackCard>
-                            </FlipperCard>
-                        </ContainerCard>
-
-                    })
-                }
-
-                {/* ////////////////////// */}
+                {jogoCartas}
             </BlocoCards>
+
         </Inicial>
     )
 }

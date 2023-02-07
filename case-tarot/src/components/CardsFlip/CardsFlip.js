@@ -1,17 +1,19 @@
-import { ContainerCard, FlipperCard, FrontCard, BackCard } from "./Styled"
-import React from "react"
+import { ContainerCard, FlipperCard, FrontCard, BackCard, Switching } from "./Styled"
+import React, { useState } from "react"
 
-const CardsFlip = (frente, verso, nome) => {
+const CardsFlip = (frente, nome, openModal) => {
+    const [checked, setCheckd] = useState(true)
 
     return (<>
+        <Switching type="checkbox" id="switch" />
         {
-            <ContainerCard>
-                <FlipperCard>
+            <ContainerCard htmlFor="switch">
+                <FlipperCard onClick={openModal}>
                     <FrontCard>
-                        <img src={frente} alt={`Carta: ${nome}`}></img>
+                        <img src={frente.frente} alt={`Carta: ${nome}`}></img>
                     </FrontCard>
                     <BackCard>
-                        <img src={verso} alt="Carta Verso"></img>
+                        <img src="https://dkw5ssdvaqf8l.cloudfront.net/static/psr/br/framework/yii/images/content/pt-br/product/tarot/marselha/back-blue-card.png" alt="Carta Verso"></img>
                     </BackCard>
                 </FlipperCard>
             </ContainerCard>
