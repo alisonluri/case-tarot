@@ -16,6 +16,12 @@ export const ContainerCard = styled.label`
     height: 339px;
     margin: 10px auto;
     perspective: 1000px;
+    .isFliped {
+        &:nth-child(odd) {
+            transition: transform 0.8s ease-out;
+            transform: rotateY(180deg);
+        }
+    }
     `
 
 export const FlipperCard = styled.section`
@@ -23,13 +29,9 @@ export const FlipperCard = styled.section`
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-
-    ////////////
     
-    /* &:nth-child(2) {
-        transition: transform 0.8s ease-out;
-        transform: rotateY(180deg);
-    } */
+    ////////////
+
 
     ////////////
     /* ${Switching} :checked {
@@ -37,10 +39,10 @@ export const FlipperCard = styled.section`
         transition: 1.8s ease-out;
     } */
     //////////
-    &:hover {
+    /* &:hover {
         transition: transform 0.8s ease-out;
         transform: rotateY(180deg);
-    }
+    } */
 `
 
 export const FrontCard = styled.div`

@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
-export const BoxDescricao = styled.section`
+export const FundoModal = styled.section`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+`
+
+export const BoxDescricao = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -12,8 +22,20 @@ export const BoxDescricao = styled.section`
     background-image: linear-gradient(45deg, rgba(84,84,84, 0.8), rgba(91,60,40, 0.8), rgba(63,35,16, 0.8));
     color: white;
     font-weight: 500;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     img {
         height: 90%;
+    }
+    button {
+        align-self: flex-start;
+        padding: 5px 10px;
+        background-color: gray;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
     }
 `
 

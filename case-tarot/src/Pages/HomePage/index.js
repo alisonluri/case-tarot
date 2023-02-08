@@ -1,27 +1,17 @@
 import { Cabecalho, Inicial, BlocoCards, BotaoIniciar } from './Styled'
 import CardsFlip from '../../components/CardsFlip/CardsFlip'
 import useRequestData from '../../hooks/useRequestData'
-import React, { useState } from 'react'
-import Descricao from '../../components/Descricao/Descricao'
-import Modal from 'react-modal'
-
-Modal.setAppElement('#root')
+import React, { useContext } from 'react'
+import Modal from '../../components/Descricao/Modal'
+import { GlobalStateContext } from '../../global/GlobalStateContext'
 
 const HomePage = () => {
-    const [modalOpen, setModalOpen] = useState(false)
+    const {states, setters} = useContext(GlobalStateContext)
+    const {flip} = states
+    const {setFlip} = setters
 
     const cartas = useRequestData('/dataCards.json')
     const urlImgFront = cartas && `${cartas.imagesUrl}`
-
-    console.log(cartas)
-    
-        const handleOpenModal = () => {
-            setModalOpen(true)
-        }
-    
-        const handleCloseModal = () => {
-            setModalOpen(false)
-        }
 
     const jogoCartas = cartas && cartas.cards &&
         cartas.cards.map((index) => {
@@ -29,9 +19,10 @@ const HomePage = () => {
                 key={index.name}
                 frente={urlImgFront + index.image}
                 nome={index.name}
-                openModal={handleOpenModal}
             />
         })
+
+        console.log(flip)
 
     return (
         <Inicial>
@@ -40,14 +31,11 @@ const HomePage = () => {
                 <p>Clique em iniciar e escolha uma carta.</p>
             </Cabecalho>
 
-            <BotaoIniciar>Iniciar</BotaoIniciar>
+            <BotaoIniciar onClick={() => setFlip(!flip)}>
+                Iniciar
+            </BotaoIniciar>
 
-            <Modal
-                isOpen={modalOpen}
-                onRequestClose={handleCloseModal}
-            >
-                <Descricao />
-            </Modal>
+            <Modal />
 
             <BlocoCards>
                 {jogoCartas}
