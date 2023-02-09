@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const Switching = styled.input`
     /* display: none; */
+    
     &:checked + label {
         transition: transform 1.5s ease-out;
         transform: rotateY(180deg);
