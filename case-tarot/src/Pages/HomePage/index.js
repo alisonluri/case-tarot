@@ -1,17 +1,16 @@
 import { Cabecalho, Inicial, BlocoCards, BotaoIniciar } from './Styled'
 import CardsFlip from '../../components/CardsFlip/CardsFlip'
 import useRequestData from '../../hooks/useRequestData'
-import React, { useContext } from 'react'
-import Modal from '../../components/Descricao/Modal'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+import React from 'react'
 
 const HomePage = () => {
-    const {states, setters} = useContext(GlobalStateContext)
-    const {flip} = states
-    const {setFlip} = setters
 
     const cartas = useRequestData('/dataCards.json')
     const urlImgFront = cartas && `${cartas.imagesUrl}`
+
+    const sortArrayCard = (array) => {
+        return array.sort(() => Math.random() - 0.5)
+    }
 
     const jogoCartas = cartas && cartas.cards &&
         cartas.cards.map((index) => {
@@ -22,8 +21,6 @@ const HomePage = () => {
             />
         })
 
-        console.log(flip)
-
     return (
         <Inicial>
             <Cabecalho>
@@ -31,14 +28,12 @@ const HomePage = () => {
                 <p>Clique em iniciar e escolha uma carta.</p>
             </Cabecalho>
 
-            <BotaoIniciar onClick={() => setFlip(!flip)}>
-                Iniciar
+            <BotaoIniciar onClick={+1}>
+                Iniciar Jogo
             </BotaoIniciar>
 
-            <Modal />
-
             <BlocoCards>
-                {jogoCartas}
+                {jogoCartas && sortArrayCard(jogoCartas)}
             </BlocoCards>
 
         </Inicial>

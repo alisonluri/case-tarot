@@ -3,31 +3,19 @@ import { GlobalStateContext } from "./GlobalStateContext"
 
 const GlobalState = props => {
     const [dados, setDados] = useState(null)
-    const [modalOpen, setModalOpen] = useState(false)
-    const [flip, setFlip] = useState(false)
-
-    const handleFlipCard = () => {
-        setFlip(!flip);
-    }
 
     const states = {
-        dados,
-        modalOpen,
-        flip
+        dados
+
     }
 
     const setters = {
-        setDados,
-        setModalOpen,
-        setFlip
-    }
+        setDados
 
-    const functions = {
-        handleFlipCard
     }
 
     return (
-        <GlobalStateContext.Provider value={{states, setters, functions}}>
+        <GlobalStateContext.Provider value={{states, setters}}>
             {props.children}
         </GlobalStateContext.Provider>
     )
