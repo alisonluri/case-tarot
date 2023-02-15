@@ -4,9 +4,17 @@ import { useEffect, useState } from "react";
 const useRequestData = (url) => {
     const [data, setData] = useState({})
 
+    const sortArrayCard = (array) => {
+        return array.sort(() => Math.random() - 0.5)
+    }
+
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
+            .then(dados => {
+                dados.cards = sortArrayCard(dados.cards)
+                return dados
+            })
             .then(dados => setData(dados))
             .catch(error => console.log(error))
     }, [url])

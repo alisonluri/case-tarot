@@ -3,15 +3,22 @@ import { GlobalStateContext } from "./GlobalStateContext"
 
 const GlobalState = props => {
     const [dados, setDados] = useState(null)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [imagem, setImagem] = useState()
+    const [nomeCarta, setNomeCarta] = useState()
 
     const states = {
-        dados
-
+        dados,
+        modalOpen,
+        imagem,
+        nomeCarta
     }
 
     const setters = {
-        setDados
-
+        setDados,
+        setModalOpen,
+        setImagem,
+        setNomeCarta
     }
 
     return (

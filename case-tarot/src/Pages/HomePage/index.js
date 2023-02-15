@@ -1,25 +1,36 @@
 import { Cabecalho, Inicial, BlocoCards, BotaoIniciar } from './Styled'
 import CardsFlip from '../../components/CardsFlip/CardsFlip'
 import useRequestData from '../../hooks/useRequestData'
-import React from 'react'
+import React, { useContext} from 'react'
+import Modal from '../../components/Descricao/Modal'
+import { GlobalStateContext } from '../../global/GlobalStateContext'
+
 
 const HomePage = () => {
+    const { states, setters } = useContext(GlobalStateContext)
+    const { modalOpen, imagem, nomeCarta } = states
+    const { setModalOpen, setImagem, setNomeCarta } = setters
 
     const cartas = useRequestData('/dataCards.json')
+    
     const urlImgFront = cartas && `${cartas.imagesUrl}`
 
-    const sortArrayCard = (array) => {
-        return array.sort(() => Math.random() - 0.5)
+
+    const abrirModal = (carta, nomeCarta) => {
+        setImagem(carta)
+        setNomeCarta(nomeCarta)
+        setModalOpen(true)
     }
 
-    const jogoCartas = cartas && cartas.cards &&
-        cartas.cards.map((index) => {
-            return <CardsFlip
-                key={index.name}
-                frente={urlImgFront + index.image}
-                nome={index.name}
-            />
-        })
+    // const jogoCartas = cartas && cartas.cards &&
+    //     cartas.cards.map((index) => {
+    //         return <CardsFlip
+    //             key={index.name}
+    //             frente={urlImgFront + index.image}
+    //             nome={index.name}
+    //             abrirModal={abrirModal}
+    //         />
+    //     })
 
     return (
         <Inicial>
@@ -28,12 +39,27 @@ const HomePage = () => {
                 <p>Clique em iniciar e escolha uma carta.</p>
             </Cabecalho>
 
-            <BotaoIniciar onClick={+1}>
+            <BotaoIniciar onClick={1}>
                 Iniciar Jogo
             </BotaoIniciar>
 
+            <Modal
+                isOpen={modalOpen}
+                fecharModal={() => setModalOpen(!modalOpen)}
+                carta={imagem}
+                nomeCarta={nomeCarta}
+            />
+
             <BlocoCards>
-                {jogoCartas && sortArrayCard(jogoCartas)}
+                {cartas && cartas.cards &&
+                    cartas.cards.map((index) => {
+                        return <CardsFlip
+                            key={index.name}
+                            frente={urlImgFront + index.image}
+                            nome={index.name}
+                            abrirModal={abrirModal}
+                        />
+                    })}
             </BlocoCards>
 
         </Inicial>

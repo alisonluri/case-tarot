@@ -18,6 +18,7 @@ export const Cabecalho = styled.header`
 `
 
 export const BlocoCards = styled.div`
+    width: 80vw;
     max-width: 900px;
     display: flex;
     flex-wrap: wrap;
@@ -25,6 +26,9 @@ export const BlocoCards = styled.div`
     justify-content: left;
     margin-top: 300px;
     padding-right: 55px;
+    @media screen {
+        
+    }
 `
 
 export const BotaoIniciar = styled.button`

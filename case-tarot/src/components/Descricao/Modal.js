@@ -1,14 +1,16 @@
 import React from "react";
 import { BoxDescricao, FundoModal, SuaCarta } from './Styled'
 
-const Modal = (cartaEscolhida, nomeCarta, isOpen, fecharModal) => {
+const Modal = ({isOpen, fecharModal, carta, nomeCarta}) => {
+
+console.log("Abrir Modal "+JSON.stringify(isOpen) )
 
 
     if (isOpen) {
         return (
             <FundoModal>
                 <BoxDescricao>
-                    <img src={cartaEscolhida} alt={nomeCarta} />
+                    <img src={carta} alt={`Carta: ${nomeCarta}`} />
                     <SuaCarta>
                         <h1>{nomeCarta}</h1>
                         <p>
@@ -21,6 +23,8 @@ const Modal = (cartaEscolhida, nomeCarta, isOpen, fecharModal) => {
             </FundoModal>
         )
     } 
+
+    return null
 
 }
 
