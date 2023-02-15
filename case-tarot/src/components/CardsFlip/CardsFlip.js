@@ -1,11 +1,8 @@
 import { BackCard, ContainerCard, FlipperCard, FrontCard } from "./StyledFlip"
 import React, { useState, useEffect } from "react"
-// import Modal from '../Descricao/Modal'
-
 
 const CardsFlip = ({frente, nome, abrirModal}) => {
     const [flip, setFlip] = useState(true)
-    // const [modalOpen, setModalOpen] = useState(false)
 
     useEffect(() => {
         if(!flip) {
@@ -33,13 +30,7 @@ const CardsFlip = ({frente, nome, abrirModal}) => {
                     </BackCard>
                 </FlipperCard>
             </ContainerCard>
-            {/* <Modal
-                key={nome}
-                carta={frente}
-                nomeCarta={nome}
-                isOpen={!flip}
-                fecharModal={() => setFlip(!flip)}
-            /> */}
+
         </>
     )
 }

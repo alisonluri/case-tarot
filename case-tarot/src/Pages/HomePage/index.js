@@ -22,15 +22,6 @@ const HomePage = () => {
         setModalOpen(true)
     }
 
-    // const jogoCartas = cartas && cartas.cards &&
-    //     cartas.cards.map((index) => {
-    //         return <CardsFlip
-    //             key={index.name}
-    //             frente={urlImgFront + index.image}
-    //             nome={index.name}
-    //             abrirModal={abrirModal}
-    //         />
-    //     })
 
     return (
         <Inicial>
@@ -39,7 +30,7 @@ const HomePage = () => {
                 <p>Clique em iniciar e escolha uma carta.</p>
             </Cabecalho>
 
-            <BotaoIniciar onClick={1}>
+            <BotaoIniciar onClick={() => window.location.reload()}>
                 Iniciar Jogo
             </BotaoIniciar>
 
